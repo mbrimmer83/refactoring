@@ -15,63 +15,83 @@ bouncing balls.
     <script>
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
+    var colors = ['red', 'blue', 'green', 'white', 'black', 'purple', 'pink', 'orange', 'green', 'black'];
 
-    var ball1 = {
-      x1: 100,
-      y1: 100,
-      radius1: 10,
-      speedX1: 5,
-      speedY1: -4,
-      color: 'red'
+    function ball() {
+      this.x1 = Math.floor((Math.random() * 400));
+      this.y1 = Math.floor((Math.random() * 400));
+      this.radius1 = Math.floor((Math.random() * 30));
+      this.speedX1 = Math.floor((Math.random() * 10));
+      this.speedY1 = Math.floor((Math.random() * 10));
+      this.color = colors.pop();
     }
-    var ball2 = {
-      x1: 300,
-      y1: 400,
-      radius1: 30,
-      speedX1: 10,
-      speedY1: 10,
-      color: 'green'
-    }
-    var ball3 = {
-      x1: 250,
-      y1: 350,
-      radius1: 30,
-      speedX1: 3,
-      speedY1: -3,
-      color: 'blue'
-    }
-    var ball4 = {
-      x1: 200,
-      y1: 300,
-      radius1: 30,
-      speedX1: -5,
-      speedY1: 5,
-      color: 'white'
-    }
-    var ball5 = {
-      x1: 300,
-      y1: 100,
-      radius1: 10,
-      speedX1: 8,
-      speedY1: 8,
-      color: 'black'
-    }
-    var ball6 = {
-      x1: 150,
-      y1: 400,
-      radius1: 25,
-      speedX1: 6,
-      speedY1: 6,
-      color: 'pink'
-    }
-    var ball7 = {
-      x1: 50,
-      y1: 300,
-      radius1: 20,
-      speedX1: -2,
-      speedY1: -2,
-      color: 'purple'
-    }
+
+    var ball1 = new ball();
+    var ball2 = new ball();
+    var ball3 = new ball();
+    var ball4 = new ball();
+    var ball5 = new ball();
+    var ball6 = new ball();
+    var ball7 = new ball();
+    var ball8 = new ball();
+    var ball9 = new ball();
+    var ball10 = new ball();
+    // var ball1 = {
+    //   x1: 100,
+    //   y1: 100,
+    //   radius1: 10,
+    //   speedX1: 5,
+    //   speedY1: -4,
+    //   color: 'red'
+    // }
+    // var ball2 = {
+    //   x1: 300,
+    //   y1: 400,
+    //   radius1: 30,
+    //   speedX1: 10,
+    //   speedY1: 10,
+    //   color: 'green'
+    // }
+    // var ball3 = {
+    //   x1: 250,
+    //   y1: 350,
+    //   radius1: 30,
+    //   speedX1: 3,
+    //   speedY1: -3,
+    //   color: 'blue'
+    // }
+    // var ball4 = {
+    //   x1: 200,
+    //   y1: 300,
+    //   radius1: 30,
+    //   speedX1: -5,
+    //   speedY1: 5,
+    //   color: 'white'
+    // }
+    // var ball5 = {
+    //   x1: 300,
+    //   y1: 100,
+    //   radius1: 10,
+    //   speedX1: 8,
+    //   speedY1: 8,
+    //   color: 'black'
+    // }
+    // var ball6 = {
+    //   x1: 150,
+    //   y1: 400,
+    //   radius1: 25,
+    //   speedX1: 6,
+    //   speedY1: 6,
+    //   color: 'pink'
+    // }
+    // var ball7 = {
+    //   x1: 50,
+    //   y1: 300,
+    //   radius1: 20,
+    //   speedX1: -2,
+    //   speedY1: -2,
+    //   color: 'purple'
+    // }
     function main() {
     ctx.fillStyle = 'yellow';
     ctx.fillRect(0, 0, 500, 500);
@@ -82,12 +102,19 @@ bouncing balls.
     drawBall(ball5);
     drawBall(ball6);
     drawBall(ball7);
+    drawBall(ball8);
+    drawBall(ball9);
+    drawBall(ball10);
 
       requestAnimationFrame(main);
     }
     main();
 
     function drawBall(ball) {
+      ctx.beginPath();
+      ctx.fillStyle = ball.color;
+      ctx.ellipse(ball.x1, ball.y1, ball.radius1, ball.radius1, 0, 0, Math.PI * 2);
+      ctx.fill();
       ball.x1 += ball.speedX1;
       ball.y1 += ball.speedY1;
       if (ball.x1 - ball.radius1 <= 0) {
@@ -102,10 +129,7 @@ bouncing balls.
       if (ball.y1 + ball.radius1 >= 500) {
         ball.speedY1 = -ball.speedY1;
       }
-      ctx.beginPath();
-      ctx.fillStyle = ball.color;
-      ctx.ellipse(ball.x1, ball.y1, ball.radius1, ball.radius1, 0, 0, Math.PI * 2);
-      ctx.fill();
+
     }
 
 
